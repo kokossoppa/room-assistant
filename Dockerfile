@@ -1,17 +1,20 @@
-FROM arm32v7/node:6
-MAINTAINER mKeRix
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-# Install the required packages
-RUN apt-get update && apt-get install -y bluetooth bluez libbluetooth-dev libudev-dev libusb-1.0-0-dev
+ENV LANG C.UTF-8
 
-# Copy room-assistant
-ADD . /room-assistant
+ARG BUILD_ARCH
+ARG BUILD_DATE
+ARG BUILD_REF
+ARG BUILD_VERSION
 
-# Build room-assistant
+RUN apk add --no-cache python git make g++ bluez libusb libusb-dev
+RUN wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-arm64.tar.gz
+RUN tar -xzvf *.gz
+RUN cp -R node-v6.11.5-linux-arm64/* /usr/local/
+
+COPY . /room-assistant
 WORKDIR /room-assistant
-RUN rm -Rf node_modules && npm install -q --production
+RUN npm install --production && ln -s /data/options.json config/local.json
 
-# Expose config volume
-VOLUME ["room-assistant/config"]
-
-CMD ["node", "index.js"]
+CMD [ "node", "index.js" ]
