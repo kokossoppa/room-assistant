@@ -8,7 +8,7 @@ ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
 
-RUN apk add --no-cache python git make g++ bluez libusb libusb-dev
+RUN apk add --no-cache python git make g++ bluez libusb libusb-dev wget
 RUN wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-arm64.tar.gz
 RUN tar -xzvf *.gz
 RUN cp -R node-v6.11.5-linux-arm64/* /usr/local/
