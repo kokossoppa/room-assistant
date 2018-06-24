@@ -3,7 +3,7 @@
   "version": "0.4.2",
   "slug": "room-assistant",
   "description": "room-assistant tracks presence and more on a room level",
-  "url": "https://github.com/mKeRix/room-assistant",
+  "url": "https://github.com/kokossoppa/room-assistant",
   "startup": "application",
   "arch": [
     "aarch64",
@@ -11,7 +11,7 @@
     "armhf",
     "i386"
   ],
-  "image": "mkerix/room-assistant-{arch}",
+  "DEBUG_image": "mkerix/room-assistant-{arch}",
   "boot": "auto",
   "host_network": true,
   "options": {
